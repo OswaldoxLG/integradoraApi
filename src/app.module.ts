@@ -1,24 +1,33 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { UsuarioModule } from './usuario/usuario.module';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { Usuario } from './usuario/entities/usuario.entity';
+import { Bpm } from './bpm/entities/bpm.entity';
+import { GsrModule } from './gsr/gsr.module';
+import { Gsr } from './gsr/entities/gsr.entity';
+import { BpmModule } from './bpm/bpm.module';
+import { UserModule } from './user/user.module';
+import { User } from './user/entities/user.entity';
+import { TempModule } from './temp/temp.module';
+import { Temp } from './temp/entities/temp.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
-      type: 'postgres',
+      type: 'mariadb',
       host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'QKtOHEF2PLPvmb',
-      database: 'bdEmotion',
-      entities: [Usuario],
-      synchronize: true, // Solo en desarrollo
-      autoLoadEntities: false, // migraciones automáticas
+      port: 3306,
+      username: 'root',
+      password: '',
+      database: 'bd_emotion',
+      entities: [Bpm, Gsr, User, Temp],
+      synchronize: true,
+      autoLoadEntities: false,
     }),
-    UsuarioModule
+    GsrModule,
+    BpmModule,
+    UserModule,
+    TempModule
   ],
   controllers: [AppController],
   providers: [AppService],
