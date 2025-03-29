@@ -48,7 +48,7 @@ export class User {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
   updated_at: Date;
 
-  @Column({ type: 'text', nullable: true})
+  @Column({ type: 'mediumtext', nullable: true})
   image: string;
 }
 
