@@ -18,27 +18,27 @@ export class UserController {
     }
 
   @Post()
-  create(@Body( new ValidationPipe() ) createUserDto: CreateUserDto) {
+  async create(@Body( new ValidationPipe() ) createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
   }
 
   @Get()
-  findAll() {
+  async findAll() {
     return this.userService.findAll();
   }
 
   @Get(':id_user')
-  findOne(@Param('id_user') id_user: number) {
+  async findOne(@Param('id_user') id_user: number) {
     return this.userService.findOne(id_user);
   }
 
   @Patch(':id_user')
-  update(@Param('id_user') id_user: number, @Body( new ValidationPipe() ) updateUserDto: UpdateUserDto) {
+  async update(@Param('id_user') id_user: number, @Body( new ValidationPipe() ) updateUserDto: UpdateUserDto) {
     return this.userService.update(id_user, updateUserDto);
   }
 
   @Delete(':id_user')
-  remove(@Param('id_user') id_user: number) {
+  async remove(@Param('id_user') id_user: number) {
     return this.userService.remove(id_user);
   }
 }
