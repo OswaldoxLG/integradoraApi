@@ -14,11 +14,15 @@ export class UserService {
     private userRepository: Repository<User>
   ){}
 
-  async login( updateUser: UpdateUserDto ){
-    try{
-        const user: User = await this.userRepository.findOneBy({ email: updateUser.email });
-        return ( await bcrypt.compare( updateUser.password, user.password ) ? user : false );
-    }catch(error){
+  async login(updateUser: UpdateUserDto) {
+    try {
+      const user: User = await this.userRepository.findOneBy({ email: updateUser.email });
+      if (user && await bcrypt.compare(updateUser.password, user.password)) {
+        return user;
+      }
+      return false;
+    } catch (error) {
+      console.error('Error en login:', error);
       return false;
     }
   }
