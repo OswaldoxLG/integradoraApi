@@ -4,15 +4,19 @@ import { rolUsuario, sexoUsuario } from "../entities/user.entity";
 export class CreateUserDto {
 
   @IsString()
+  @IsOptional()
   rol: rolUsuario;
 
   @IsString()
+  @IsOptional()
   username: string;
 
   @IsString()
+  @IsOptional()
   name: string;
   
   @IsString()
+  @IsOptional()
   lastname: string;
   
   @IsString()

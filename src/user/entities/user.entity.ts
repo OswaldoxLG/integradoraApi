@@ -18,10 +18,10 @@ export class User {
   @Column({ default: rolUsuario.USUARIO})
   rol: rolUsuario;
 
-  @Column()
+  @Column({ nullable: true })
   username: string;
 
-  @Column()
+  @Column({ nullable: true })
   name: string;
 
   @Column({ nullable: true })
@@ -48,7 +48,7 @@ export class User {
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP'})
   updated_at: Date;
 
-  @Column({ type: 'mediumtext', nullable: true})
+  @Column({ type: 'mediumtext', nullable: true, default: ''})
   image: string;
 }
 

@@ -29,19 +29,17 @@ export class UserService {
 
     async signUp(createUsuario: CreateUserDto) {
       try {
-        const existingUser = await this.userRepository.findOneBy({ email: createUsuario.email });
+        const existingUser: User = await this.userRepository.findOneBy({ email: createUsuario.email });
         if (existingUser) {
           return false;
         }
         const saltOrRounds = 10;
         const hash = await bcrypt.hash(createUsuario.password, saltOrRounds);
-        const newUser = this.userRepository.create({
-          ...createUsuario,
-          password: hash
-        });
+        const register = { ...createUsuario, password: hash}
+        const newUser = this.userRepository.create( register );
         return await this.userRepository.save(newUser);
-  
       } catch (error) {
+        console.log(error.message);
         return false;
       }
     }
