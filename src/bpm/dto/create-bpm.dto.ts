@@ -5,7 +5,7 @@ export class CreateBpmDto {
   id_bpm: number;
 
   @IsNumber()
-  bmp: number;
+  bpm: number;
 
   @IsDateString()
   createdAt: Date;
