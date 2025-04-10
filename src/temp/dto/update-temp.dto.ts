@@ -1,9 +1,7 @@
 import { IsNumber, IsDateString } from "class-validator";
 
 export class UpdateTempDto {
-  @IsNumber()
-  id_temp: number;
-
+  
   @IsNumber()
   temp: number;
 
